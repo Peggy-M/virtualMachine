@@ -71,3 +71,18 @@ PS Old Generation
 http://localhost:8080/heap
 ~~~
 
+### 优化调试步骤
+
+首先对于执行引擎采用混合模式，对于编写的代码会编译器编译成 .class 文件，然后由解释器去逐行解释执行，JVM 内部做了优化，对于热点代码，也就是被频繁调用解释执行的代码被即时编译器编译成可执行文件，对于这些热点代码会被编译成与本地机器平台相关联的机器码并缓存在内存当中，需要的时候直接执行。对于平时开发锁用到的 jdk 默认都是 mixed mode 模式。
+
+![image-20250708164249305](README.assets/image-20250708164249305.png) 
+
+~~~ shell
+#通过参数 -Xint 可以在运行的时候进行设置
+PS C:\Users\32094> java -Xint -verison
+Unrecognized option: -verison
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+~~~
+
+![image-20250708164633808](README.assets/image-20250708164633808.png) 
